@@ -1,26 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function App() {
+import NavbarComponent from './components/NavbarComponent';
+
+import MezonPage from './components/pages/MezonPage';
+import AproposPage from './components/pages/AproposPage';
+import SciencePage from './components/pages/SciencePage';
+
+import { createTheme, ThemeProvider } from '@mui/material';
+
+export interface IAppProps { }
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#E7ABFC'
+    },
+    secondary: {
+      main: '#FCF2DA'
+    },
+
+    background: {
+      default: ' #32D38A'
+    },
+    text: {
+      primary: '#0753E9',
+      secondary: '#000000',
+    },
+
+  },
+  typography: {
+    button: {
+      fontSize: 16,
+      fontWeight: 900,
+    },
+    fontFamily: 'Rubik Bubbles'
+  }
+},
+);
+
+const App: React.FunctionComponent<IAppProps> = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <NavbarComponent />
+        <Routes>
+          <Route path='/mezon' element={<MezonPage />} />
+          <Route path='/apropos' element={<AproposPage />} />
+          <Route path='/science' element={<SciencePage />} />
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
+
+
+  )
 }
 
 export default App;
