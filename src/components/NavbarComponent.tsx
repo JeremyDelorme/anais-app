@@ -1,75 +1,93 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import Link from '@mui/material/Link';
+import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
-import AproposPage from './pages/AproposPage';
-import MagasinPage from './pages/MagasinPage';
-import SciencePage from './pages/SciencePage';
-import MezonPage from './pages/MezonPage';
-
+import MenuIcon from '@mui/icons-material/Menu';
 
 const drawerWidth = 240;
-const navItems = ['mezon', 'apropos', 'science', 'magasin', 'temoignages'];
+const navItems = [
+    { label: 'Mezon', path: '/' },
+    { label: 'Selon', path: '/selon' },
+    { label: 'Magasin', path: '/magasin' },
+    { label: 'Temoignages', path: '/temoignages' },
+];
 
-export default function DrawerAppBar() {
+const NavbarComponent: React.FC = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const links = [
-        {
-            to: '/apropos',
-            name: 'À propos'
-        },
-        {
-            to: '/magasin',
-            name: 'Magasin'
-        },
-        {
-            to: '/science',
-            name: 'Science'
-        },
-        {
-            to: '/temoignages',
-            name: 'Témoignages'
-        },
-    ]
+    const handleDrawerToggle = () => {
+        setMobileOpen((prevState) => !prevState);
+    };
 
+    const drawer = (
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', paddingTop: '20px' }}>
+            <Typography variant="h6" sx={{ my: 2 }}>
+                Ananou
+            </Typography>
+            <List>
+                {navItems.map((item) => (
+                    <ListItem key={item.label} disablePadding>
+                        <Link to={item.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Typography variant="body1">{item.label}</Typography>
+                        </Link>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
 
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar component="nav">
+            <AppBar position="fixed" sx={{ backgroundColor: '#0FB5BD' }}>
                 <Toolbar>
-                    <Link href="/mezon">
-                        <Box
-                            component="img"
-                            sx={{ height: 54 }}
-                            alt="Logo"
-                            src={"AnanouPortrait1.png"}
-                        />
-                    </Link>
-                    <Box>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ mr: 2, display: { sm: 'none' } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color: '#fff' }}>
+                        Ananou
+                    </Typography>
+                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
-                            <Button
-                                color='secondary'
-                                key={item}
-                            >
-                                {item}
-                            </Button>
+                            <Link key={item.label} to={item.path} style={{ textDecoration: 'none', color: 'inherit', margin: '0 20px' }}>
+                                {item.label}
+                            </Link>
                         ))}
                     </Box>
                 </Toolbar>
             </AppBar>
+            <Box component="nav">
+                <Drawer
+                    variant="temporary"
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true,
+                    }}
+                    sx={{
+                        display: { xs: 'block', sm: 'none' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    }}
+                >
+                    {drawer}
+                </Drawer>
+            </Box>
+            <Toolbar /> {/* Push content down to align with app bar */}
         </Box>
     );
-}
+};
+
+export default NavbarComponent;

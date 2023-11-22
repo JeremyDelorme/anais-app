@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -9,25 +10,84 @@ import Typography from '@mui/material/Typography';
 
 export default function SciencePage() {
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-                component="img"
-                alt="pokeball"
-                height="140"
-                image="Pokeball.png"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Apwopo
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Apprenez tout ce qu'il y a à apprendre sur cette créature étrange!
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Apprenez-en davantage!</Button>
-            </CardActions>
-        </Card>
+        <Box style={{ justifyContent: "center" }}>
+            <Card>
+                <CardMedia
+                    component="img"
+                    alt="vieilledjole"
+                    height="700"
+                    image="VieilleDjole.png"
+                />
+                <CardContent >
+                    <Typography variant='h3' gutterBottom>
+                        À propos
+                    </Typography>
+                    <Typography variant="h4" color="text.secondary">
+                        Apprenez tout ce qu'il y a à apprendre sur cette créature étrange!
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Apprenez-en davantage!</Button>
+                </CardActions>
+            </Card>
+            <Card>
+                <CardMedia
+                    component="img"
+                    alt="vieilledjole"
+                    height="700"
+                    image="VieilleDjole.png"
+                />
+                <CardContent >
+                    <Typography variant='h3' gutterBottom>
+                        À propos
+                    </Typography>
+                    <Typography variant="h4" color="text.secondary">
+                        Apprenez tout ce qu'il y a à apprendre sur cette créature étrange!
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Apprenez-en davantage!</Button>
+                </CardActions>
+            </Card>
+            <Card>
+                <CardMedia
+                    component="img"
+                    alt="vieilledjole"
+                    height="700"
+                    image="VieilleDjole.png"
+                />
+                <CardContent >
+                    <Typography variant='h3' gutterBottom>
+                        À propos
+                    </Typography>
+                    <Typography variant="h4" color="text.secondary">
+                        Apprenez tout ce qu'il y a à apprendre sur cette créature étrange!
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Apprenez-en davantage!</Button>
+                </CardActions>
+            </Card>
+            <Card>
+                <CardMedia
+                    component="img"
+                    alt="vieilledjole"
+                    height="700"
+                    image="VieilleDjole.png"
+                />
+                <CardContent >
+                    <Typography variant='h3' gutterBottom>
+                        À propos
+                    </Typography>
+                    <Typography variant="h4" color="text.secondary">
+                        Apprenez tout ce qu'il y a à apprendre sur cette créature étrange!
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Apprenez-en davantage!</Button>
+                </CardActions>
+            </Card>
+        </Box>
 
     );
 }
